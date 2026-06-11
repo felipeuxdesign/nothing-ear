@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+
+# Local tooling / preview server (não vai pro portfólio)
+.claude/
+
+# Artefatos de build (imagens comprimidas p/ o arquivo do Figma)
+assets/_fig/
+
+# Pesquisa de marca — referência interna, não publicar
+Nothing_Brand_DNA.pdf
+
+# Skills instaladas localmente (ferramentas de dev, não fazem parte do projeto)
+.agents/
+skills-lock.json
+
+# Logs
+*.log

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#000000" />
+  <title>Nothing Ear — Som que dá para ver.</title>
+  <meta name="description" content="Nothing Ear combina design transparente, áudio Hi-Res e cancelamento ativo de ruído em um produto feito para ser reconhecido antes mesmo de tocar." />
+  <meta property="og:title" content="Nothing Ear — Som que dá para ver." />
+  <meta property="og:description" content="Design transparente, áudio Hi-Res de 24-bit e cancelamento ativo de até 45 dB." />
+  <meta property="og:image" content="assets/img-00.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/nothing-logo.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    /* ativa as entradas animadas antes da 1ª pintura (sem flash);
+       failsafe: se o script principal não rodar, tudo volta a ficar visível */
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('anim');
+        addEventListener('load', function () {
+          setTimeout(function () {
+            if (!window.__animRan) document.documentElement.classList.remove('anim');
+          }, 2500);
+        });
+      }
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#top" class="nav__logo" aria-label="Nothing — início">
+        <img src="assets/nothing-logo.svg" alt="Nothing" width="521" height="94" />
+      </a>
+      <nav class="nav__links" aria-label="Seções">
+        <a href="#design">Design</a>
+        <a href="#som">Som</a>
+        <a href="#specs">Especificações</a>
+      </nav>
+      <a href="#comprar" class="btn btn--primary btn--sm">Comprar</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <img src="assets/img-00.png" alt="Pessoa usando o Nothing Ear" width="1672" height="941" fetchpriority="high" />
+        <div class="hero__scrim" aria-hidden="true"></div>
+      </div>
+      <div class="hero__content container">
+        <h1 class="hero__title" data-reveal>Som que dá<br />para ver.</h1>
+        <p class="hero__sub" data-reveal data-d="1">Nothing Ear combina design transparente, áudio Hi-Res e cancelamento ativo de ruído em um produto feito para ser reconhecido antes mesmo de tocar.</p>
+        <div class="hero__actions" data-reveal data-d="2">
+          <a href="#comprar" class="btn btn--primary btn--lg">Comprar agora&nbsp;&nbsp;→</a>
+          <a href="#design" class="btn btn--ghost btn--lg">Explorar recursos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section class="specs section--dark" id="specs" aria-label="Especificações">
+      <div class="container">
+        <ul class="spec-grid">
+          <li class="spec-cell" data-reveal>
+            <span class="spec-num">40.5<span class="spec-unit">h</span></span>
+            <span class="spec-label">Bateria total com o case</span>
+          </li>
+          <li class="spec-cell" data-reveal>
+            <span class="spec-num">24<span class="spec-unit">-bit</span></span>
+            <span class="spec-label">Áudio Hi-Res</span>
+          </li>
+          <li class="spec-cell" data-reveal>
+            <span class="spec-num">45<span class="spec-unit">dB</span></span>
+            <span class="spec-label">Cancelamento ativo de ruído</span>
+          </li>
+          <li class="spec-cell" data-reveal>
+            <span class="spec-num">LHDC<span class="spec-unit"> V5</span></span>
+            <span class="spec-label">Som em alta resolução</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DESIGN — fone + texto -->
+    <section class="fone section--light" id="design">
+      <div class="container fone__grid">
+        <div class="fone__text">
+          <h2 class="fone__title" data-reveal>Hardware como<br />assinatura.</h2>
+          <p class="fone__lead" data-reveal data-d="1">O case translúcido revela a arquitetura interna do produto. Nada está ali por acaso. Componentes, camadas e contrastes viram parte da identidade.</p>
+          <blockquote class="pull-quote" data-reveal data-d="2">Transparência não é efeito.<br /><em>É confiança.</em></blockquote>
+        </div>
+        <div class="fone__media" data-reveal data-d="1">
+          <img class="fone__img" src="assets/HERO%20DK.png" alt="Nothing Ear — design transparente, com a arquitetura interna à vista" width="1920" height="1000" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT — visto e ouvido (dot-matrix protagonista) -->
+    <section class="statement section--light" id="statement" aria-label="Feito para ser visto e ouvido">
+      <div class="container statement__inner">
+        <img class="statement__mark" src="assets/nothing-logo.svg" alt="" aria-hidden="true" width="521" height="94" loading="lazy" />
+        <h2 class="statement__title">
+          <span class="ln"><span class="ln__i">Feito para ser visto.</span></span>
+          <span class="ln"><span class="ln__i">Feito para ser ouvido.</span></span>
+        </h2>
+      </div>
+    </section>
+
+    <!-- SOM — editorial -->
+    <section class="editorial section--dark" id="som">
+      <div class="editorial__media">
+        <img src="assets/mulheres%202.png" alt="Duas pessoas usando o Nothing Ear" width="1672" height="941" loading="lazy" />
+        <div class="editorial__scrim" aria-hidden="true"></div>
+        <div class="editorial__content container">
+          <h2 class="editorial__title" data-reveal>Mais detalhe.<br />Menos ruído.</h2>
+          <p class="editorial__sub" data-reveal data-d="1">Áudio Hi-Res de 24-bit e cancelamento ativo de até 45 dB. Cada camada no lugar — e você no centro do som.</p>
+          <ul class="chip-row" data-reveal data-d="2">
+            <li class="chip">24-bit Hi-Res</li>
+            <li class="chip">45 dB ANC</li>
+            <li class="chip">LHDC V5</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FECHAMENTO -->
+    <section class="closing section--dark" id="comprar">
+      <div class="container closing__inner">
+        <h2 class="closing__title" data-reveal>Não é só<br />mais um fone.</h2>
+        <p class="closing__sub" data-reveal data-d="1">É som, design e intenção em um objeto transparente.</p>
+        <div class="closing__actions" data-reveal data-d="2">
+          <a href="#top" class="btn btn--primary btn--lg">Comprar Nothing Ear&nbsp;&nbsp;→</a>
+          <a href="#specs" class="btn btn--ghost btn--lg">Ver especificações completas</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer section--dark">
+    <div class="container">
+      <div class="footer__top" data-reveal>
+        <a href="#top" class="footer__logo" aria-label="Nothing">
+          <img src="assets/nothing-logo.svg" alt="Nothing" width="521" height="94" loading="lazy" />
+        </a>
+        <p class="footer__tagline">Transparency as trust.</p>
+      </div>
+      <div class="footer__grid" data-reveal data-d="1">
+        <div class="footer__col">
+          <h4>Produto</h4>
+          <a href="#design">Design</a>
+          <a href="#som">Som</a>
+          <a href="#specs">Especificações</a>
+        </div>
+        <div class="footer__col">
+          <h4>Comprar</h4>
+          <a href="#comprar">Comprar agora</a>
+          <a href="#specs">Ver especificações</a>
+        </div>
+        <div class="footer__col">
+          <h4>Nothing</h4>
+          <a href="#top">Sobre</a>
+          <a href="#top">Comunidade</a>
+          <a href="#top">Sustentabilidade</a>
+        </div>
+        <div class="footer__col footer__col--meta">
+          <h4>London, UK</h4>
+          <p>Nothing Technology Limited.<br />Human tech.</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2024 Nothing Technology Limited</span>
+        <span>Som que dá para ver.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

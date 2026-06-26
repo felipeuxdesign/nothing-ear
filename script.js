@@ -34,25 +34,12 @@
         return true;
       });
     };
-    var ticking = false;
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (!ticking) {
-          window.requestAnimationFrame(function () {
-            check();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      },
-      { passive: true }
-    );
+    window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check, { passive: true });
     window.addEventListener("load", check);
-    // 1ª passada no próximo frame: garante que o estado "escondido"
-    // seja pintado antes do reveal (a entrada da hero anima de verdade)
-    window.requestAnimationFrame(check);
+    // 1ª passada logo após a pintura do estado inicial. Uso setTimeout (não rAF):
+    // rAF é pausado em aba inativa/headless e o reveal nunca dispararia.
+    setTimeout(check, 60);
   }
 
   /* ---- Âncoras suaves respeitando a altura da nav ---- */

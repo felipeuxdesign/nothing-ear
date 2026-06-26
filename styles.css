@@ -228,15 +228,10 @@ ul{list-style:none;}
 .editorial__media>img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center 12%;}  /* mostra mais folga preta acima das cabeças em telas grandes */
 .editorial__scrim{position:absolute;inset:0;background:
-  linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.5) 18%,rgba(0,0,0,0) 42%),
-  linear-gradient(to bottom,rgba(0,0,0,.8) 0%,rgba(0,0,0,0) 16%);}
-/* blur só na faixa de baixo: dissolve o fone cortado em telas grandes/janela
-   sem cobrir o fone (a máscara some subindo). O texto fica por cima, nítido. */
-.editorial__blur{position:absolute;left:0;right:0;bottom:0;height:44%;z-index:1;
-  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 26%,transparent 100%);
-          mask-image:linear-gradient(to top,#000 0%,#000 26%,transparent 100%);
-  pointer-events:none;}  /* respiro preto no topo + legibilidade da nav */
+  /* base esfumaçada até PRETO SÓLIDO — cobre o corte da imagem embaixo */
+  linear-gradient(to top, #000 0%, #000 20%, rgba(0,0,0,.5) 38%, rgba(0,0,0,0) 56%),
+  /* topo: legibilidade da nav */
+  linear-gradient(to bottom, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 16%);}  /* respiro preto no topo + legibilidade da nav */
 .editorial__content{position:relative;z-index:2;width:100%;padding-bottom:clamp(3.5rem,6vw,90px);}
 .editorial__title{font-weight:500;font-size:var(--fs-h2);line-height:.95;letter-spacing:-.019em;color:var(--white);}
 .editorial__sub{font-weight:400;font-size:var(--fs-lead);line-height:1.5;color:var(--white-85);

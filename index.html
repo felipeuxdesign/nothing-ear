@@ -34,6 +34,22 @@
 </head>
 <body>
 
+  <!-- INTRO / BOOT GATE (a cara da Nothing) — ativado por JS; sem JS = site aparece -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__center">
+      <img class="intro__logo" src="assets/nothing-logo.svg" alt="Nothing" width="521" height="94" />
+      <p class="intro__tagline">Som que dá para ver.</p>
+      <button class="intro__enter" id="introEnter" type="button">
+        Entrar<span class="intro__arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+    <div class="intro__foot">
+      <span class="intro__status" id="introStatus">Inicializando</span>
+      <span class="intro__count"><span id="introCount">0</span>%</span>
+    </div>
+    <div class="intro__bar"><span class="intro__fill" id="introFill"></span></div>
+  </div>
+
   <!-- HEADER -->
   <header class="nav" id="nav">
     <div class="nav__inner container">
@@ -100,7 +116,9 @@
           <blockquote class="pull-quote" data-reveal data-d="2">Transparência não é efeito.<br /><em>É confiança.</em></blockquote>
         </div>
         <div class="fone__media" data-reveal data-d="1">
-          <img class="fone__img" src="assets/HERO%20DK.png" alt="Nothing Ear — design transparente, com a arquitetura interna à vista" width="1920" height="1000" loading="lazy" />
+          <div class="fone__tilt" data-tilt>
+            <img class="fone__img" src="assets/HERO%20DK.png" alt="Nothing Ear — design transparente, com a arquitetura interna à vista" width="1920" height="1000" loading="lazy" />
+          </div>
         </div>
       </div>
     </section>

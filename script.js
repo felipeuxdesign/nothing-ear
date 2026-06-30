@@ -1,116 +1,74 @@
 /* =================================================================
    NOTHING EAR — interações
-   Intro/boot gate · reveals (coordenados com o intro) · tilt 3D do fone
-   · nav · âncoras. Robusto: sem JS = site visível; reduced-motion respeitado.
+   Nav (+ scrollspy) · entradas animadas (Emil Kowalski) · âncoras suaves
+   Reveal por posição (robusto): nunca prende conteúdo escondido.
    ================================================================= */
 (function () {
   "use strict";
 
   window.__animRan = true; // avisa o failsafe do <head> que o script rodou
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var doc = document.documentElement;
 
-  /* ---------- Nav ---------- */
+  /* ---- Nav: sólida ao rolar ---- */
   var nav = document.getElementById("nav");
-  function onNav() { if (nav) nav.classList.toggle("scrolled", window.scrollY > 24); }
+  function onNav() {
+    if (nav) nav.classList.toggle("scrolled", window.scrollY > 24);
+  }
   window.addEventListener("scroll", onNav, { passive: true });
   onNav();
 
-  /* ---------- Reveals (só disparam depois de "entrar") ---------- */
-  var entered = false;
-  var revealEls = [];
-  function check() {
-    if (!entered) return;
-    var vh = window.innerHeight || doc.clientHeight;
-    revealEls = revealEls.filter(function (el) {
-      if (el.getBoundingClientRect().top < vh * 0.85) { el.classList.add("is-in"); return false; }
-      return true;
-    });
-  }
+  /* ---- Entradas animadas ---- */
   if (!prefersReduced) {
-    doc.classList.add("anim");
-    revealEls = [].slice.call(document.querySelectorAll("[data-reveal], .editorial, .statement"));
+    document.documentElement.classList.add("anim");
+    var els = [].slice.call(
+      document.querySelectorAll("[data-reveal], .editorial, .statement")
+    );
+    var check = function () {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      els = els.filter(function (el) {
+        // revela quando o topo cruza a linha de gatilho (cobre scroll, âncoras e pulos)
+        if (el.getBoundingClientRect().top < vh * 0.85) {
+          el.classList.add("is-in");
+          return false;
+        }
+        return true;
+      });
+    };
     window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check, { passive: true });
     window.addEventListener("load", check);
-  }
-  function startReveals() { entered = true; check(); }
-
-  /* ---------- Intro / boot gate ---------- */
-  var intro = document.getElementById("intro");
-  var seen = false;
-  try { seen = !!sessionStorage.getItem("nothingIntroSeen"); } catch (e) {}
-
-  if (intro && !prefersReduced && !seen) {
-    runIntro(intro);
-  } else {
-    if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
-    startReveals();
+    // 1ª passada logo após a pintura do estado inicial. Uso setTimeout (não rAF):
+    // rAF é pausado em aba inativa/headless e o reveal nunca dispararia.
+    setTimeout(check, 60);
   }
 
-  function runIntro(el) {
-    el.classList.add("is-active");
-    el.setAttribute("aria-hidden", "false");
-    doc.classList.add("intro-open");
-
-    var fill = document.getElementById("introFill");
-    var count = document.getElementById("introCount");
-    var status = document.getElementById("introStatus");
-    var enterBtn = document.getElementById("introEnter");
-    var leaving = false;
-    var pct = 0;
-
-    var timer = setInterval(function () {
-      pct += Math.max(2, Math.round((100 - pct) * 0.14)); // acelera e desacelera até 100
-      if (pct >= 100) { pct = 100; clearInterval(timer); ready(); }
-      if (count) count.textContent = pct;
-      if (fill) fill.style.width = pct + "%";
-    }, 85);
-
-    function ready() {
-      if (status) status.textContent = "Pronto";
-      el.classList.add("is-ready");
-    }
-    function enter() {
-      if (leaving) return;
-      leaving = true;
-      try { sessionStorage.setItem("nothingIntroSeen", "1"); } catch (e) {}
-      el.classList.add("is-leaving");
-      doc.classList.remove("intro-open");
-      startReveals();
-      setTimeout(function () { if (el && el.parentNode) el.parentNode.removeChild(el); }, 1000);
-    }
-
-    if (enterBtn) enterBtn.addEventListener("click", enter);
-    document.addEventListener("keydown", function (e) {
-      if (el.classList.contains("is-ready") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); enter(); }
+  /* ---- Scrollspy: marca o link da seção atual (mesmo estado visual do hover) ----
+     Funciona com ou sem reduced-motion: é orientação, não enfeite. Só lê o rect
+     e alterna uma classe — nenhuma outra animação depende disso. */
+  var spy = [
+    { link: document.querySelector('.nav__links a[href="#design"]'), sec: document.getElementById("design") },
+    { link: document.querySelector('.nav__links a[href="#som"]'),    sec: document.getElementById("som") },
+    { link: document.querySelector('.nav__links a[href="#specs"]'),  sec: document.getElementById("specs") }
+  ].filter(function (p) { return p.link && p.sec; });
+  function spyCheck() {
+    var line = (nav ? nav.offsetHeight : 0) + 8; // zona de leitura logo abaixo da nav fixa
+    var current = null;
+    spy.forEach(function (p) {
+      var r = p.sec.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) current = p.link; // seção que cruza a zona
     });
-    // failsafe: nunca prende o usuário
-    setTimeout(function () { if (!leaving) enter(); }, 7000);
-  }
-
-  /* ---------- Fone: tilt 3D seguindo o cursor ---------- */
-  var tilt = document.querySelector("[data-tilt]");
-  var foneSection = document.getElementById("design");
-  var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (tilt && foneSection && canHover && !prefersReduced) {
-    var MAX = 7; // graus
-    foneSection.addEventListener("mouseenter", function () {
-      tilt.style.transition = "transform .12s ease-out";
-    });
-    foneSection.addEventListener("mousemove", function (e) {
-      var r = foneSection.getBoundingClientRect();
-      var nx = (e.clientX - r.left) / r.width - 0.5;
-      var ny = (e.clientY - r.top) / r.height - 0.5;
-      tilt.style.transform = "rotateX(" + (-ny * MAX * 2).toFixed(2) + "deg) rotateY(" + (nx * MAX * 2).toFixed(2) + "deg)";
-    });
-    foneSection.addEventListener("mouseleave", function () {
-      tilt.style.transition = "transform .6s cubic-bezier(0.23,1,0.32,1)";
-      tilt.style.transform = "";
+    spy.forEach(function (p) {
+      var on = p.link === current;
+      p.link.classList.toggle("is-current", on);
+      if (on) p.link.setAttribute("aria-current", "location");
+      else p.link.removeAttribute("aria-current");
     });
   }
+  window.addEventListener("scroll", spyCheck, { passive: true });
+  window.addEventListener("resize", spyCheck, { passive: true });
+  spyCheck();
 
-  /* ---------- Âncoras suaves ---------- */
+  /* ---- Âncoras suaves respeitando a altura da nav ---- */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
       var id = link.getAttribute("href");

@@ -17,6 +17,38 @@
   window.addEventListener("scroll", onNav, { passive: true });
   onNav();
 
+  /* ---- Menu mobile (takeover) ---- */
+  var docEl = document.documentElement;
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("menu");
+  if (toggle && menu) {
+    var menuLinks = [].slice.call(menu.querySelectorAll("a"));
+    var bg = [].slice.call(document.querySelectorAll("main, footer")); // travados p/ o foco não vazar
+    function setMenu(open, returnFocus) {
+      docEl.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      menu.setAttribute("aria-hidden", open ? "false" : "true");
+      bg.forEach(function (el) { if (open) el.setAttribute("inert", ""); else el.removeAttribute("inert"); });
+      if (open && menuLinks[0]) menuLinks[0].focus();
+      else if (!open && returnFocus) toggle.focus();
+    }
+    toggle.addEventListener("click", function () {
+      setMenu(!docEl.classList.contains("menu-open"), true);
+    });
+    // escolher uma seção fecha o menu (o scroll suave fica com o handler de âncoras)
+    menuLinks.forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false, false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && docEl.classList.contains("menu-open")) setMenu(false, true);
+    });
+    // voltou pro desktop com o menu aberto? fecha p/ não travar o scroll
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 860 && docEl.classList.contains("menu-open")) setMenu(false, false);
+    }, { passive: true });
+  }
+
   /* ---- Entradas animadas ---- */
   if (!prefersReduced) {
     document.documentElement.classList.add("anim");

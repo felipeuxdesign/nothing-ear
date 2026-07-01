@@ -45,9 +45,24 @@
         <a href="#som">Som</a>
         <a href="#specs">Especificações</a>
       </nav>
-      <a href="#comprar" class="btn btn--primary btn--sm">Comprar</a>
+      <a href="#comprar" class="btn btn--primary btn--sm nav__cta">Comprar</a>
+      <button class="nav__toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <span class="nav__toggle-lines" aria-hidden="true"><span></span><span></span></span>
+      </button>
     </div>
   </header>
+
+  <!-- MENU MOBILE (takeover · aparece < 860px, controlado por JS) -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__inner container" aria-label="Navegação principal">
+      <ul class="menu__list">
+        <li class="menu__item"><a href="#design"><span class="menu__idx" aria-hidden="true">01</span>Design</a></li>
+        <li class="menu__item"><a href="#som"><span class="menu__idx" aria-hidden="true">02</span>Som</a></li>
+        <li class="menu__item"><a href="#specs"><span class="menu__idx" aria-hidden="true">03</span>Especificações</a></li>
+      </ul>
+      <a href="#comprar" class="btn btn--primary btn--lg menu__cta">Comprar agora&nbsp;&nbsp;<span class="btn__arrow" aria-hidden="true">→</span></a>
+    </nav>
+  </div>
 
   <main id="top">
 

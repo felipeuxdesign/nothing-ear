@@ -36,6 +36,7 @@ Hero → Specs → Design (the product) → Statement → Som (editorial) → Cl
 
 - Vanilla **HTML + CSS + JavaScript** — no framework, no build step, no dependencies.
 - Fonts via Google Fonts.
+- Photography served as **WebP** (~160 KB total for the three full-bleed images, down from ~4 MB of PNG).
 - Scroll-reveal motion (ease-out curves, `transform`/`opacity` only), with a
   `prefers-reduced-motion` fallback. Reveals enhance an already-visible default
   (the page never ships blank if JS fails).

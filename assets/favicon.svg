@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Nothing — "N" em dot-matrix. Fundo preto p/ ser visível em aba clara e escura. -->
+  <rect width="64" height="64" rx="13" fill="#000"/>
+  <g fill="#fff">
+    <circle cx="19" cy="19" r="3.4"/>
+    <circle cx="19" cy="27.7" r="3.4"/>
+    <circle cx="19" cy="36.3" r="3.4"/>
+    <circle cx="19" cy="45" r="3.4"/>
+    <circle cx="27.7" cy="27.7" r="3.4"/>
+    <circle cx="36.3" cy="36.3" r="3.4"/>
+    <circle cx="45" cy="19" r="3.4"/>
+    <circle cx="45" cy="27.7" r="3.4"/>
+    <circle cx="45" cy="36.3" r="3.4"/>
+    <circle cx="45" cy="45" r="3.4"/>
+  </g>
+</svg>

@@ -80,7 +80,7 @@ ul{list-style:none;}
   border:1px solid transparent;border-radius:100px;white-space:nowrap;
   transition:background var(--t),color var(--t),border-color var(--t),transform var(--t);
 }
-.btn:active{transform:scale(.97);}
+.btn:active{transform:scale(.97);transition-duration:.12s;}  /* press rápido; release volta no token de 300ms */
 .btn__arrow{display:inline-block;transition:transform var(--t);}
 .btn:hover .btn__arrow{transform:translateX(4px);}  /* seta desliza no hover */
 /* botão grande (hero / fechamento): 14px / 1.12 / pad 16.6×30.4 */
@@ -99,7 +99,7 @@ ul{list-style:none;}
    ----------------------------------------------------------------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:100;
   border-bottom:1px solid transparent;
-  transition:background var(--t),border-color var(--t),backdrop-filter var(--t);}
+  transition:background var(--t),border-color var(--t);}  /* blur não anima: re-rasteriza o fundo à toa; o fade do rgba já mascara o snap */
 .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;height:80px;}
 .nav__logo{display:inline-flex;}
 .nav__logo img{height:26px;width:auto;}
@@ -150,8 +150,11 @@ ul{list-style:none;}
   font-weight:500;font-size:clamp(2.25rem,11vw,3.5rem);line-height:1;letter-spacing:-.03em;color:var(--white);}
 .menu__idx{font-family:var(--font-mono);font-size:13px;font-weight:400;letter-spacing:1px;color:var(--grey-42);}
 .menu__cta{align-self:flex-start;}
-/* stagger de entrada (só com JS via .anim; reduced-motion mostra tudo estático) */
-.anim .menu__item,.anim .menu__cta{opacity:0;transform:translateY(14px);}
+/* stagger de entrada (só com JS via .anim; reduced-motion mostra tudo estático).
+   A transição no estado base dá a SAÍDA (200ms) ao fechar; na abertura as regras
+   .menu-open abaixo vencem com .5s + delays. */
+.anim .menu__item,.anim .menu__cta{opacity:0;transform:translateY(14px);
+  transition:opacity .2s var(--ease-out2),transform .2s var(--ease-out2);}
 .menu-open .menu__item,.menu-open .menu__cta{opacity:1;transform:none;
   transition:opacity .5s var(--ease-out2),transform .5s var(--ease-out2);}
 .menu-open .menu__item:nth-child(1){transition-delay:.06s;}
@@ -230,11 +233,17 @@ html.menu-open{overflow:hidden;}
 .statement{background:var(--white);color:var(--ink);position:relative;overflow:hidden;
   padding-block:clamp(4rem,8vw,150px) clamp(6rem,13vw,200px);text-align:center;}
 .statement__inner{position:relative;display:flex;flex-direction:column;align-items:center;}
-.statement__mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
-  width:min(1100px,92%);filter:invert(1);opacity:.12;pointer-events:none;}
+/* marca maior que o quadro (sangra pelas laterais; .statement tem overflow:hidden):
+   deixa de ler como logo eclipsado pelo título e vira campo halftone proposital */
+.statement__mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:160vw;max-width:none;filter:invert(1);opacity:.09;pointer-events:none;}
+.statement__kicker{position:relative;z-index:1;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--grey-42);margin-bottom:30px;}
 .statement__title{position:relative;z-index:1;font-weight:500;font-size:var(--fs-h2);
   line-height:1;letter-spacing:-.019em;color:var(--ink);}
-.statement__title .ln{display:block;overflow:hidden;padding-bottom:.06em;}
+/* padding maior protege o descendente do "p" do clip da máscara (métricas Win);
+   o margin negativo compensa — espaçamento visual idêntico */
+.statement__title .ln{display:block;overflow:hidden;padding-bottom:.15em;margin-bottom:-.09em;}
 .statement__title .ln__i{display:block;}
 .statement__title .ln:last-child .ln__i{color:var(--grey-37);}  /* "ouvido." em cinza */
 
@@ -250,19 +259,25 @@ html.menu-open{overflow:hidden;}
 .anim [data-reveal][data-d="1"].is-in{transition-delay:.08s;}
 .anim [data-reveal][data-d="2"].is-in{transition-delay:.16s;}
 .anim [data-reveal][data-d="3"].is-in{transition-delay:.24s;}
-/* specs: stagger ao longo da fileira */
-.anim .spec-cell:nth-child(2).is-in{transition-delay:.08s;}
-.anim .spec-cell:nth-child(3).is-in{transition-delay:.16s;}
-.anim .spec-cell:nth-child(4).is-in{transition-delay:.24s;}
+/* specs: stagger ao longo da fileira — só quando as 4 células entram juntas (4 col);
+   em 2/1 colunas cada célula cruza o gatilho sozinha e o delay viraria latência morta */
+@media (min-width:1025px){
+  .anim .spec-cell:nth-child(2).is-in{transition-delay:.08s;}
+  .anim .spec-cell:nth-child(3).is-in{transition-delay:.16s;}
+  .anim .spec-cell:nth-child(4).is-in{transition-delay:.24s;}
+}
 /* editorial: zoom-out sutil da imagem ao entrar */
 .anim .editorial__media>img{transform:scale(1.06);}
 .anim .editorial.is-in .editorial__media>img{transform:scale(1);transition:transform 1.3s var(--ease-out2);}
-/* statement: marca dot-matrix (protagonista) + linhas em máscara */
-.anim .statement__mark{opacity:0;filter:invert(1) blur(10px);transform:translate(-50%,-52%) scale(.97);
-  will-change:opacity,transform,filter;}
-.anim .statement.is-in .statement__mark{opacity:.12;filter:invert(1) blur(0);transform:translate(-50%,-52%) scale(1);
-  transition:opacity .9s var(--ease-out2),transform 1.1s var(--ease-out2),filter .9s ease-out;}
-.anim .statement .ln__i{transform:translateY(115%);}
+/* statement: marca dot-matrix (protagonista) + linhas em máscara.
+   Sem blur animado: filter é a propriedade mais cara e o olho só lê o fade. */
+.anim .statement__mark{opacity:0;transform:translate(-50%,-50%) scale(.97);}
+.anim .statement.is-in .statement__mark{opacity:.09;transform:translate(-50%,-50%) scale(1);
+  transition:opacity .9s var(--ease-out2),transform 1.1s var(--ease-out2);}
+.anim .statement__kicker{opacity:0;transform:translateY(10px);}
+.anim .statement.is-in .statement__kicker{opacity:1;transform:none;
+  transition:opacity .7s ease-out,transform .8s var(--ease-out2);}
+.anim .statement .ln__i{transform:translateY(125%);}
 .anim .statement.is-in .ln__i{transform:translateY(0);transition:transform .85s var(--ease-out2);}
 .anim .statement.is-in .ln:nth-child(2) .ln__i{transition-delay:.12s;}
 
@@ -338,6 +353,7 @@ html.menu-open{overflow:hidden;}
   .fone__title{width:auto;}
   .fone__lead{max-width:100%;}
   .hero__sub{max-width:100%;}
+  .statement__mark{width:230vw;}  /* mantém a densidade de pontos na tela estreita */
 }
 @media (max-width:560px){
   .spec-grid{grid-template-columns:1fr;}
@@ -353,12 +369,15 @@ html.menu-open{overflow:hidden;}
    ----------------------------------------------------------------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important;scroll-behavior:auto!important;}
-  .fone__img{animation:none;}
+    animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important;
+    scroll-behavior:auto!important;}
+  .fone__media{animation:none;}   /* foneFloat vive na .fone__media */
   /* tudo visível e estático mesmo se .anim estiver presente */
   .anim [data-reveal]{opacity:1;transform:none;}
-  .anim .statement__mark{opacity:.12;filter:invert(1);transform:translate(-50%,-52%);}
+  .anim .statement__mark{opacity:.09;filter:invert(1);transform:translate(-50%,-50%);}
+  .anim .statement__kicker{opacity:1;transform:none;}
   .anim .statement .ln__i{transform:none;}
   .anim .editorial__media>img{transform:none;}
+  .anim .menu__item,.anim .menu__cta{opacity:1;transform:none;}
 }
 :focus-visible{outline:2px solid currentColor;outline-offset:3px;}

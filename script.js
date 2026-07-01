@@ -6,7 +6,6 @@
 (function () {
   "use strict";
 
-  window.__animRan = true; // avisa o failsafe do <head> que o script rodou
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Nav: sólida ao rolar ---- */
@@ -58,8 +57,10 @@
     var check = function () {
       var vh = window.innerHeight || document.documentElement.clientHeight;
       els = els.filter(function (el) {
-        // revela quando o topo cruza a linha de gatilho (cobre scroll, âncoras e pulos)
-        if (el.getBoundingClientRect().top < vh * 0.85) {
+        // revela quando o topo cruza a linha de gatilho (cobre scroll, âncoras e pulos);
+        // data-trigger permite gatilho mais fundo p/ seções com muito padding-top
+        // (statement/editorial), senão a coreografia roda antes do conteúdo aparecer
+        if (el.getBoundingClientRect().top < vh * (parseFloat(el.dataset.trigger) || 0.85)) {
           el.classList.add("is-in");
           return false;
         }
@@ -73,6 +74,9 @@
     // rAF é pausado em aba inativa/headless e o reveal nunca dispararia.
     setTimeout(check, 60);
   }
+  // só avisa o failsafe do <head> DEPOIS do sistema de reveal estar armado —
+  // se algo acima quebrar, o failsafe ainda devolve o conteúdo
+  window.__animRan = true;
 
   /* ---- Scrollspy: marca o link da seção atual (mesmo estado visual do hover) ----
      Funciona com ou sem reduced-motion: é orientação, não enfeite. Só lê o rect

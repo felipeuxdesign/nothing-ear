@@ -52,7 +52,7 @@
   if (!prefersReduced) {
     document.documentElement.classList.add("anim");
     var els = [].slice.call(
-      document.querySelectorAll("[data-reveal], .editorial, .statement")
+      document.querySelectorAll("[data-reveal], .editorial")
     );
     var check = function () {
       var vh = window.innerHeight || document.documentElement.clientHeight;
@@ -84,7 +84,7 @@
   var spy = [
     { link: document.querySelector('.nav__links a[href="#design"]'), sec: document.getElementById("design") },
     { link: document.querySelector('.nav__links a[href="#som"]'),    sec: document.getElementById("som") },
-    { link: document.querySelector('.nav__links a[href="#specs"]'),  sec: document.getElementById("specs") }
+    { link: document.querySelector('.nav__links a[href="#especificacoes"]'), sec: document.getElementById("especificacoes") }
   ].filter(function (p) { return p.link && p.sec; });
   function spyCheck() {
     var line = (nav ? nav.offsetHeight : 0) + 8; // zona de leitura logo abaixo da nav fixa

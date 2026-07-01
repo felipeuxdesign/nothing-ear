@@ -44,7 +44,7 @@
       <nav class="nav__links" aria-label="Seções">
         <a href="#design">Design</a>
         <a href="#som">Som</a>
-        <a href="#specs">Especificações</a>
+        <a href="#especificacoes">Especificações</a>
       </nav>
       <a href="#comprar" class="btn btn--primary btn--sm nav__cta">Comprar</a>
       <button class="nav__toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
@@ -59,7 +59,7 @@
       <ul class="menu__list">
         <li class="menu__item"><a href="#design"><span class="menu__idx" aria-hidden="true">01</span>Design</a></li>
         <li class="menu__item"><a href="#som"><span class="menu__idx" aria-hidden="true">02</span>Som</a></li>
-        <li class="menu__item"><a href="#specs"><span class="menu__idx" aria-hidden="true">03</span>Especificações</a></li>
+        <li class="menu__item"><a href="#especificacoes"><span class="menu__idx" aria-hidden="true">03</span>Especificações</a></li>
       </ul>
       <a href="#comprar" class="btn btn--primary btn--lg menu__cta">Comprar agora&nbsp;&nbsp;<span class="btn__arrow" aria-hidden="true">→</span></a>
     </nav>
@@ -84,7 +84,7 @@
     </section>
 
     <!-- SPECS -->
-    <section class="specs section--dark" id="specs" aria-label="Especificações">
+    <section class="specs section--dark" id="specs" aria-label="Destaques">
       <div class="container">
         <ul class="spec-grid">
           <li class="spec-cell" data-reveal>
@@ -121,14 +121,31 @@
       </div>
     </section>
 
-    <!-- STATEMENT — visto e ouvido (dot-matrix protagonista) -->
-    <section class="statement section--light" id="statement" aria-label="Feito para ser visto e ouvido" data-trigger="0.65">
-      <div class="container statement__inner">
-        <img class="statement__mark" src="assets/nothing-logo.svg" alt="" aria-hidden="true" width="521" height="94" loading="lazy" />
-        <h2 class="statement__title">
-          <span class="ln"><span class="ln__i">Feito para ser visto.</span></span>
-          <span class="ln"><span class="ln__i">Feito para ser ouvido.</span></span>
-        </h2>
+    <!-- ESPECIFICAÇÕES — ficha completa ("Sem segredos.") -->
+    <section class="ficha section--light" id="especificacoes" aria-label="Especificações completas">
+      <div class="container">
+        <div class="ficha__head">
+          <h2 class="ficha__title" data-reveal>Sem segredos.</h2>
+          <p class="ficha__lead" data-reveal data-d="1">A ficha completa, à vista — como o resto do produto.</p>
+        </div>
+        <div class="ficha__table">
+          <dl class="ficha__col" data-reveal data-d="1">
+            <div class="ficha__row"><dt>Driver</dt><dd>40 mm, dinâmico</dd></div>
+            <div class="ficha__row"><dt>Resposta</dt><dd>20 Hz – 40 kHz</dd></div>
+            <div class="ficha__row"><dt>Códecs</dt><dd>LHDC V5 · AAC · SBC</dd></div>
+            <div class="ficha__row"><dt>Cancelamento</dt><dd>Até 45 dB, adaptativo</dd></div>
+            <div class="ficha__row"><dt>Microfones</dt><dd>4, com redução por IA</dd></div>
+            <div class="ficha__row"><dt>Transparência</dt><dd>Sim, ajustável</dd></div>
+          </dl>
+          <dl class="ficha__col" data-reveal data-d="2">
+            <div class="ficha__row"><dt>Bateria com o case</dt><dd>Até 40,5 h</dd></div>
+            <div class="ficha__row"><dt>Carga rápida</dt><dd>5 min = 2,4 h</dd></div>
+            <div class="ficha__row"><dt>Porta</dt><dd>USB-C</dd></div>
+            <div class="ficha__row"><dt>Bluetooth</dt><dd>5.4, dois dispositivos</dd></div>
+            <div class="ficha__row"><dt>Peso</dt><dd>312 g</dd></div>
+            <div class="ficha__row"><dt>Resistência</dt><dd>IP52</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
 
@@ -156,7 +173,7 @@
         <p class="closing__sub" data-reveal data-d="1">É som, design e intenção em um objeto transparente.</p>
         <div class="closing__actions" data-reveal data-d="2">
           <a href="#top" class="btn btn--primary btn--lg">Comprar Nothing Ear&nbsp;&nbsp;<span class="btn__arrow" aria-hidden="true">→</span></a>
-          <a href="#specs" class="btn btn--ghost btn--lg">Ver especificações completas</a>
+          <a href="#especificacoes" class="btn btn--ghost btn--lg">Ver especificações completas</a>
         </div>
       </div>
     </section>
@@ -177,12 +194,12 @@
           <h4>Produto</h4>
           <a href="#design">Design</a>
           <a href="#som">Som</a>
-          <a href="#specs">Especificações</a>
+          <a href="#especificacoes">Especificações</a>
         </div>
         <div class="footer__col">
           <h4>Comprar</h4>
           <a href="#comprar">Comprar agora</a>
-          <a href="#specs">Ver especificações</a>
+          <a href="#especificacoes">Ver especificações</a>
         </div>
         <div class="footer__col">
           <h4>Nothing</h4>

@@ -233,12 +233,8 @@ html.menu-open{overflow:hidden;}
 .statement{background:var(--white);color:var(--ink);position:relative;overflow:hidden;
   padding-block:clamp(4rem,8vw,150px) clamp(6rem,13vw,200px);text-align:center;}
 .statement__inner{position:relative;display:flex;flex-direction:column;align-items:center;}
-/* marca maior que o quadro (sangra pelas laterais; .statement tem overflow:hidden):
-   deixa de ler como logo eclipsado pelo título e vira campo halftone proposital */
-.statement__mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:160vw;max-width:none;filter:invert(1);opacity:.09;pointer-events:none;}
-.statement__kicker{position:relative;z-index:1;font-family:var(--font-mono);font-size:12px;
-  letter-spacing:1.2px;text-transform:uppercase;color:var(--grey-42);margin-bottom:30px;}
+.statement__mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
+  width:min(1100px,92%);filter:invert(1);opacity:.12;pointer-events:none;}
 .statement__title{position:relative;z-index:1;font-weight:500;font-size:var(--fs-h2);
   line-height:1;letter-spacing:-.019em;color:var(--ink);}
 /* padding maior protege o descendente do "p" do clip da máscara (métricas Win);
@@ -271,12 +267,9 @@ html.menu-open{overflow:hidden;}
 .anim .editorial.is-in .editorial__media>img{transform:scale(1);transition:transform 1.3s var(--ease-out2);}
 /* statement: marca dot-matrix (protagonista) + linhas em máscara.
    Sem blur animado: filter é a propriedade mais cara e o olho só lê o fade. */
-.anim .statement__mark{opacity:0;transform:translate(-50%,-50%) scale(.97);}
-.anim .statement.is-in .statement__mark{opacity:.09;transform:translate(-50%,-50%) scale(1);
+.anim .statement__mark{opacity:0;transform:translate(-50%,-52%) scale(.97);}
+.anim .statement.is-in .statement__mark{opacity:.12;transform:translate(-50%,-52%) scale(1);
   transition:opacity .9s var(--ease-out2),transform 1.1s var(--ease-out2);}
-.anim .statement__kicker{opacity:0;transform:translateY(10px);}
-.anim .statement.is-in .statement__kicker{opacity:1;transform:none;
-  transition:opacity .7s ease-out,transform .8s var(--ease-out2);}
 .anim .statement .ln__i{transform:translateY(125%);}
 .anim .statement.is-in .ln__i{transform:translateY(0);transition:transform .85s var(--ease-out2);}
 .anim .statement.is-in .ln:nth-child(2) .ln__i{transition-delay:.12s;}
@@ -353,7 +346,6 @@ html.menu-open{overflow:hidden;}
   .fone__title{width:auto;}
   .fone__lead{max-width:100%;}
   .hero__sub{max-width:100%;}
-  .statement__mark{width:230vw;}  /* mantém a densidade de pontos na tela estreita */
 }
 @media (max-width:560px){
   .spec-grid{grid-template-columns:1fr;}
@@ -374,8 +366,7 @@ html.menu-open{overflow:hidden;}
   .fone__media{animation:none;}   /* foneFloat vive na .fone__media */
   /* tudo visível e estático mesmo se .anim estiver presente */
   .anim [data-reveal]{opacity:1;transform:none;}
-  .anim .statement__mark{opacity:.09;filter:invert(1);transform:translate(-50%,-50%);}
-  .anim .statement__kicker{opacity:1;transform:none;}
+  .anim .statement__mark{opacity:.12;filter:invert(1);transform:translate(-50%,-52%);}
   .anim .statement .ln__i{transform:none;}
   .anim .editorial__media>img{transform:none;}
   .anim .menu__item,.anim .menu__cta{opacity:1;transform:none;}

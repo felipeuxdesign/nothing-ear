@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nothing Ear — statement · 3 opções</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --black:#000;--white:#fff;--ink:#0a0a0a;--grey-61:#9b9b9b;--grey-42:#6a6a6a;--grey-37:#5f5f5f;
+      --font-sans:"Space Grotesk",Arial,sans-serif;--font-mono:"Space Mono",monospace;
+      --fs-h2:clamp(2.25rem,6.4vw,6rem);
+      --gutter:clamp(1.5rem,5vw,80px);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-sans);background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;}
+    .container{max-width:1440px;margin-inline:auto;padding-inline:var(--gutter);}
+    .tag{background:var(--black);color:#fff;font-family:var(--font-mono);font-size:12px;letter-spacing:1.2px;
+      text-transform:uppercase;padding:14px 0;}
+    .tag .container{display:flex;gap:14px;align-items:center;}
+    .tag b{font-weight:700;}
+    .tag span{color:var(--grey-61);}
+
+    /* base: mesma métrica da seção do site */
+    .st{background:var(--white);color:var(--ink);position:relative;overflow:hidden;
+      padding-block:clamp(4rem,8vw,150px) clamp(6rem,13vw,200px);text-align:center;}
+    .st__inner{position:relative;display:flex;flex-direction:column;align-items:center;}
+    .h2{font-weight:500;font-size:var(--fs-h2);line-height:1;letter-spacing:-.019em;color:var(--ink);}
+    .h2 .sub{color:var(--grey-37);}
+
+    /* ===== OPÇÃO 1 — original (marca atrás do tipo, 12%) — a que está no site ===== */
+    .o1 .mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
+      width:min(1100px,92%);filter:invert(1);opacity:.12;pointer-events:none;}
+    .o1 .h2{position:relative;z-index:1;}
+
+    /* ===== OPÇÃO 2 — só tipografia, escala maior (sem marca) ===== */
+    .o2 .h2{font-size:clamp(2.5rem,7.5vw,7.5rem);line-height:.98;letter-spacing:-.03em;}
+
+    /* ===== OPÇÃO 3 — wordmark nítido pequeno como carimbo acima ===== */
+    .o3 .stamp{height:20px;width:auto;filter:invert(1);margin-bottom:40px;}
+  </style>
+</head>
+<body>
+
+  <div class="tag"><div class="container"><b>Opção 1</b><span>Original — marca dot-matrix atrás do tipo (como está no site agora)</span></div></div>
+  <section class="st o1">
+    <div class="container st__inner">
+      <img class="mark" src="assets/nothing-logo.svg" alt="" aria-hidden="true" />
+      <h2 class="h2">Feito para ser visto.<br /><span class="sub">Feito para ser ouvido.</span></h2>
+    </div>
+  </section>
+
+  <div class="tag"><div class="container"><b>Opção 2</b><span>Só tipografia — sem marca, tipo maior (silêncio total)</span></div></div>
+  <section class="st o2">
+    <div class="container st__inner">
+      <h2 class="h2">Feito para ser visto.<br /><span class="sub">Feito para ser ouvido.</span></h2>
+    </div>
+  </section>
+
+  <div class="tag"><div class="container"><b>Opção 3</b><span>Wordmark nítido pequeno acima — carimbo, sem sobreposição</span></div></div>
+  <section class="st o3">
+    <div class="container st__inner">
+      <img class="stamp" src="assets/nothing-logo.svg" alt="Nothing" />
+      <h2 class="h2">Feito para ser visto.<br /><span class="sub">Feito para ser ouvido.</span></h2>
+    </div>
+  </section>
+
+</body>
+</html>

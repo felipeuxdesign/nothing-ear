@@ -16,3 +16,7 @@ skills-lock.json
 
 # Logs
 *.log
+
+# Case Behance — capturas e exports são regeneráveis (tools/)
+case-behance/captures/
+case-behance/export/

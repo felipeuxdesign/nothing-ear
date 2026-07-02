@@ -41,6 +41,22 @@ Hero → Specs → Design (the product) → Statement → Som (editorial) → Cl
   `prefers-reduced-motion` fallback. Reveals enhance an already-visible default
   (the page never ships blank if JS fails).
 
+## Structure
+
+```
+index.html        # the page (semantic, single file)
+styles.css        # design tokens + layout + motion (Figma-faithful values)
+script.js         # reveals, scrollspy, mobile menu — vanilla, ~150 lines
+assets/
+  hero.webp       # served images (WebP, ~160 KB total)
+  fone.webp
+  som.webp
+  og.png          # Open Graph image
+  nothing-logo.svg
+  favicon.svg
+  src/            # original AI-generated sources (PNG)
+```
+
 ## Run locally
 
 Open `index.html` directly, or serve the folder:

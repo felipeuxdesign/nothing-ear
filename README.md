@@ -73,4 +73,4 @@ python3 -m http.server 8080   # then open http://localhost:8080
 
 ---
 
-Designed & built by **Luiz Correia** · Product Designer
+Designed & built by **Felipe Correia** · Product Designer

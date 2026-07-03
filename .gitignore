@@ -4,12 +4,5 @@
 # Local tooling / preview server (não vai pro portfólio)
 .claude/
 
-# Pesquisa de marca — referência interna, não publicar
-Nothing_Brand_DNA.pdf
-
-# Skills instaladas localmente (ferramentas de dev, não fazem parte do projeto)
-.agents/
-skills-lock.json
-
 # Logs
 *.log

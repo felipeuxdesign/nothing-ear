@@ -48,13 +48,12 @@ index.html        # the page (semantic, single file)
 styles.css        # design tokens + layout + motion (Figma-faithful values)
 script.js         # reveals, scrollspy, mobile menu — vanilla, ~150 lines
 assets/
-  hero.webp       # served images (WebP, ~160 KB total)
+  hero.webp       # served photography (WebP, ~160 KB total)
   fone.webp
   som.webp
-  og.png          # Open Graph image
-  nothing-logo.svg
+  logo.svg        # dot-matrix wordmark
   favicon.svg
-  src/            # original AI-generated sources (PNG)
+  og.jpg          # Open Graph / social share image
 ```
 
 ## Run locally

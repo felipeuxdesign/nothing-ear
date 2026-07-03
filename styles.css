@@ -346,8 +346,10 @@ html.menu-open{overflow:hidden;}
 }
 @media (max-width:560px){
   .spec-grid{grid-template-columns:1fr;}
+  /* empilhados, os cards não precisam dos 330px nem do space-between (que
+     jogava número no topo e label lá no fim) — número e label juntos, compacto */
+  .spec-cell{min-height:0;justify-content:flex-start;gap:14px;padding:40px 24px;}
   .footer__grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
-  .hero{align-items:center;}
   .btn--lg{width:100%;}
   .hero__actions,.closing__actions{width:100%;}
   .editorial__media{min-height:78svh;}

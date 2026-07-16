@@ -31,7 +31,7 @@
   --fs-lead:  clamp(1.0625rem, 1.5vw, 1.4rem); /* 22.4 */
 
   --container: 1440px;
-  --gutter: clamp(1.25rem, 5vw, 80px);
+  --gutter: clamp(1.25rem, 5.56vw, 80px); /* 5.56vw → atinge os 80 do grid já em 1440 (5vw só chegava em 1600 e deixava 72 no canônico) */
   --ease: cubic-bezier(0.16,1,0.3,1);
   --ease-out2: cubic-bezier(0.23,1,0.32,1);   /* ease-out forte (Emil) */
   --t: 0.3s var(--ease);
@@ -345,6 +345,7 @@ html.menu-open{overflow:hidden;}
   .hero__media img,.editorial__media img{object-position:center;}
 }
 @media (max-width:560px){
+  :root{--gutter:20px;}  /* margem exata do grid mobile (4 col · offset 20) */
   .spec-grid{grid-template-columns:1fr;}
   /* empilhados, os cards não precisam dos 330px nem do space-between (que
      jogava número no topo e label lá no fim) — número e label juntos, compacto */

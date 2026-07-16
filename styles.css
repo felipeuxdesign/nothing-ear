@@ -335,9 +335,10 @@ html.menu-open{overflow:hidden;}
   .nav__links{display:none;}
   .nav__cta{display:none;}          /* Comprar migra para dentro do menu */
   .nav__toggle{display:inline-flex;}
-  .fone{padding-top:clamp(4rem,12vw,147px);}
+  /* produto invade a banda preta acima (-57), igual aos desktops */
+  .fone{padding-top:0;}
   .fone__grid{grid-template-columns:1fr;gap:clamp(2rem,7vw,3rem);}
-  .fone__media{order:-1;margin:0 auto;max-width:min(86vw,520px);}
+  .fone__media{order:-1;margin:-57px auto 0;max-width:min(86vw,520px);}
   .fone__title{width:auto;}
   .fone__lead{max-width:100%;}
   .hero__sub{max-width:100%;}

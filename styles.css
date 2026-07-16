@@ -201,12 +201,13 @@ html.menu-open{overflow:hidden;}
   text-transform:uppercase;color:var(--grey-61);max-width:18ch;}
 
 /* -----------------------------------------------------------------
-   DESIGN — fone + texto (branco · conteúdo alinhado a x=240)
-   container mais largo (1600) → conteúdo 1440 em x=240 no desktop
+   DESIGN — fone + texto (branco · container padrão: alinha com TODAS
+   as seções e senta na coluna 1 do grid em qualquer largura — o
+   container próprio de 1600 deixava o texto fora do grid entre
+   1440 e 1920 e desalinhado do resto da página)
    ----------------------------------------------------------------- */
 .fone{background:var(--white);color:var(--ink);overflow:visible;position:relative;z-index:1;
   padding-block:147px clamp(4rem,9vw,120px);}
-.fone .container{max-width:1600px;}
 .fone__grid{display:grid;grid-template-columns:minmax(0,576px) minmax(0,1fr);
   gap:clamp(.5rem,1vw,11px);align-items:start;}
 .fone__title{font-weight:500;font-size:var(--fs-h2);line-height:.95;letter-spacing:-.019em;color:var(--ink);

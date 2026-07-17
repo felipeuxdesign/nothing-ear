@@ -345,8 +345,12 @@ html.menu-open{overflow:hidden;}
   .fone__lead{max-width:100%;}
   .hero__sub{max-width:100%;}
   .ficha__table{grid-template-columns:1fr;gap:0;}  /* colunas da ficha empilham */
-  /* os recortes mobile (<picture>) já vêm enquadrados como no Figma → centraliza */
-  .hero__media img,.editorial__media img{object-position:center;}
+  /* os recortes mobile (<picture>) já vêm enquadrados como no Figma.
+     Âncora no TOPO: o hero é 100svh e a Som 78svh — em alturas de viewport
+     diferentes do frame (852), o "center" cortava em cima e embaixo e a
+     modelo deslizava em relação à nav. Com "top", a relação rosto↔nav fica
+     idêntica ao Figma em qualquer tela; o corte come só a base escura. */
+  .hero__media img,.editorial__media img{object-position:top;}
   /* scrim do hero mobile = os DOIS gradientes do frame do Figma, traduzidos:
      vertical (topo .32 p/ nav → 0 aos 43% → preto sólido dos 61% p/ baixo,
      derretendo a borda do crop) + lateral (esquerda escura, como o desktop) */
@@ -362,6 +366,10 @@ html.menu-open{overflow:hidden;}
   .spec-cell{min-height:0;justify-content:flex-start;gap:14px;padding:40px 24px;}
   .spec-label{max-width:none;}       /* o cap de 18ch é do desktop; aqui quebrava em 2 linhas à toa */
   .ficha__row{padding-block:18px;}   /* linhas da ficha iguais ao Figma mobile */
+  /* seção Som = frame mobile do Figma: chips menores numa linha, gaps 24 */
+  .editorial__sub{margin-top:24px;}
+  .chip-row{margin-top:24px;gap:8px;}
+  .chip{font-size:11px;letter-spacing:1.1px;line-height:17px;padding:6px 12px;}
   /* footer = medidas do frame mobile do Figma */
   .footer{padding-top:72px;}
   .footer__top{flex-direction:column;align-items:flex-start;gap:16px;padding-bottom:28px;}

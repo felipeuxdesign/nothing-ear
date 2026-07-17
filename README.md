@@ -7,7 +7,7 @@ brand-DNA study, designed in Figma, then coded faithfully and animated.
 > The "Nothing" name and wordmark are trademarks of their respective owner, used here only
 > for a non-commercial design concept. Product and lifestyle imagery is **AI-generated**.
 
-**Live demo:** [nothing-ear.vercel.app](https://nothing-ear.vercel.app/)
+**Live demo:** [nothing-ear.vercel.app](https://nothing-ear.vercel.app/) · **Design source:** [Figma Community](https://www.figma.com/community/file/1654599825441457489/nothing-ear)
 
 <p align="center">
   <img src="assets/cover.png" alt="Nothing Ear landing page — hero section" width="900" />

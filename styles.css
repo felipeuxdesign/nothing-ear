@@ -347,11 +347,12 @@ html.menu-open{overflow:hidden;}
   .ficha__table{grid-template-columns:1fr;gap:0;}  /* colunas da ficha empilham */
   /* os recortes mobile (<picture>) já vêm enquadrados como no Figma → centraliza */
   .hero__media img,.editorial__media img{object-position:center;}
-  /* scrim do hero mobile = gradiente do Figma (escurece de cima p/ baixo) +
-     preto sólido de 58% pra baixo: o crop tem fundo transparente na base e
-     a foto termina ~59% — o sólido derrete a borda e dá o palco do texto */
-  .hero__scrim{background:linear-gradient(to bottom,
-    rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 42%, #000 58%, #000 100%);}
+  /* scrim do hero mobile = os DOIS gradientes do frame do Figma, traduzidos:
+     vertical (topo .32 p/ nav → 0 aos 43% → preto sólido dos 61% p/ baixo,
+     derretendo a borda do crop) + lateral (esquerda escura, como o desktop) */
+  .hero__scrim{background:
+    linear-gradient(to bottom, rgba(0,0,0,.32) 0%, rgba(0,0,0,0) 43%, #000 61%, #000 100%),
+    linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.7) 24.5%, rgba(0,0,0,.15) 62%, rgba(0,0,0,.45) 100%);}
 }
 @media (max-width:560px){
   :root{--gutter:20px;}  /* margem exata do grid mobile (4 col · offset 20) */
@@ -361,7 +362,12 @@ html.menu-open{overflow:hidden;}
   .spec-cell{min-height:0;justify-content:flex-start;gap:14px;padding:40px 24px;}
   .spec-label{max-width:none;}       /* o cap de 18ch é do desktop; aqui quebrava em 2 linhas à toa */
   .ficha__row{padding-block:18px;}   /* linhas da ficha iguais ao Figma mobile */
-  .footer__grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
+  /* footer = medidas do frame mobile do Figma */
+  .footer{padding-top:72px;}
+  .footer__top{flex-direction:column;align-items:flex-start;gap:16px;padding-bottom:28px;}
+  .footer__tagline{font-size:12px;}
+  .footer__grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;padding-block:44px;}
+  .footer__bottom{padding-top:32px;gap:8px;font-size:11px;}
   .btn--lg{width:100%;}
   .hero__actions,.closing__actions{width:100%;}
   .editorial__media{min-height:78svh;}

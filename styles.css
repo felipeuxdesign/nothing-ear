@@ -311,7 +311,7 @@ html.menu-open{overflow:hidden;}
 .footer{padding-block:97px clamp(2rem,4vw,48px);}
 .footer__top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
   padding-bottom:32px;border-bottom:1px solid var(--line-dark-2);}
-.footer__logo img{height:26px;}
+.footer__logo img{height:26px;width:auto;}  /* sem width:auto o atributo width=521 estica a caixa e o SVG centraliza a tinta fora da coluna */
 .footer__tagline{font-family:var(--font-mono);font-size:13px;letter-spacing:1.3px;line-height:20.15px;
   text-transform:uppercase;color:var(--grey-61);}
 .footer__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;padding-block:64px;}
@@ -347,6 +347,11 @@ html.menu-open{overflow:hidden;}
   .ficha__table{grid-template-columns:1fr;gap:0;}  /* colunas da ficha empilham */
   /* os recortes mobile (<picture>) já vêm enquadrados como no Figma → centraliza */
   .hero__media img,.editorial__media img{object-position:center;}
+  /* scrim do hero mobile = gradiente do Figma (escurece de cima p/ baixo) +
+     preto sólido de 58% pra baixo: o crop tem fundo transparente na base e
+     a foto termina ~59% — o sólido derrete a borda e dá o palco do texto */
+  .hero__scrim{background:linear-gradient(to bottom,
+    rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 42%, #000 58%, #000 100%);}
 }
 @media (max-width:560px){
   :root{--gutter:20px;}  /* margem exata do grid mobile (4 col · offset 20) */

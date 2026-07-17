@@ -53,12 +53,15 @@ index.html        # the page (semantic, single file)
 styles.css        # design tokens + layout + motion (Figma-faithful values)
 script.js         # reveals, scrollspy, mobile menu — vanilla, ~150 lines
 assets/
-  hero.webp       # served photography (WebP, ~160 KB total)
+  hero.webp        # served photography (WebP, ~160 KB total)
+  hero-mobile.webp  # art-directed crop for ≤860px (matches the Figma mobile frame)
   fone.webp
   som.webp
-  logo.svg        # dot-matrix wordmark
+  som-mobile.webp   # art-directed crop for ≤860px
+  logo.svg          # dot-matrix wordmark
   favicon.svg
-  og.jpg          # Open Graph / social share image
+  og.jpg            # Open Graph / social share image
+  cover.png         # README hero screenshot
 ```
 
 ## Run locally

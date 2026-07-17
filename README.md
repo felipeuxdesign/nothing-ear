@@ -9,6 +9,10 @@ brand-DNA study, designed in Figma, then coded faithfully and animated.
 
 **Live demo:** _add your deploy link here_
 
+<p align="center">
+  <img src="assets/cover.png" alt="Nothing Ear landing page — hero section" width="900" />
+</p>
+
 ---
 
 ## Overview
@@ -30,7 +34,8 @@ with subtle, scroll-triggered motion.
 
 ## Sections
 
-Hero → Specs → Design (the product) → Statement → Som (editorial) → Closing → Footer.
+Hero → Specs → Design (the product) → Especificações ("Sem segredos.", full spec sheet) →
+Som (editorial) → Closing → Footer.
 
 ## Tech
 

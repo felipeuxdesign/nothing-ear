@@ -353,6 +353,8 @@ html.menu-open{overflow:hidden;}
   /* empilhados, os cards não precisam dos 330px nem do space-between (que
      jogava número no topo e label lá no fim) — número e label juntos, compacto */
   .spec-cell{min-height:0;justify-content:flex-start;gap:14px;padding:40px 24px;}
+  .spec-label{max-width:none;}       /* o cap de 18ch é do desktop; aqui quebrava em 2 linhas à toa */
+  .ficha__row{padding-block:18px;}   /* linhas da ficha iguais ao Figma mobile */
   .footer__grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
   .btn--lg{width:100%;}
   .hero__actions,.closing__actions{width:100%;}
